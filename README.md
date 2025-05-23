@@ -6,17 +6,17 @@ Se abordan aspectos clave como la gestión de múltiples entornos, autenticació
 ---
 
 ## Estructura del Proyecto
-
-├── cloud_function/ # Código fuente de la Cloud Function/
-├── modules/ # Módulos reutilizables de Terraform/
-├── terraform.tfstate.d/ # Estados de Terraform por workspace/
-├── main.tf # Configuración principal de Terraform/
-├── variables.tf # Definición de variables/
-├── outputs.tf # Salidas de Terraform/
-├── providers.tf # Configuración de proveedores/
-├── locals.tf # Variables locales/
-├── terraform.tfvars # Valores de variables/
-└── README.md # Documentación del proyecto/
+```text
+├── cloud_function/ # Código fuente de la Cloud Function
+├── modules/ # Módulos reutilizables de Terraform
+├── terraform.tfstate.d/ # Estados de Terraform por workspace
+├── main.tf # Configuración principal de Terraform
+├── variables.tf # Definición de variables
+├── outputs.tf # Salidas de Terraform
+├── providers.tf # Configuración de proveedores
+├── locals.tf # Variables locales
+├── terraform.tfvars # Valores de variables
+└── README.md # Documentación del proyecto
 
 ## Despliegue
 
