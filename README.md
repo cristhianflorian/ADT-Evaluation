@@ -17,6 +17,7 @@ Se abordan aspectos clave como la gestión de múltiples entornos, autenticació
 ├── locals.tf # Variables locales
 ├── terraform.tfvars # Valores de variables
 └── README.md # Documentación del proyecto
+---
 
 ## Despliegue
 
