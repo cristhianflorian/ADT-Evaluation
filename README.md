@@ -1,56 +1,57 @@
 # ADT-Evaluation
 
-Este repositorio contiene la solución al desafío de **ADT**, enfocada en la implementación de infraestructura como código utilizando **Terraform** en **Google Cloud Platform (GCP)**.  
-Se abordan aspectos clave como la gestión de múltiples entornos, autenticación, despliegue de funciones en la nube y monitoreo.
+This repository contains the solution to the ADT challenge, focused on implementing infrastructure as code using Terraform on Google Cloud Platform (GCP).
+Key aspects such as multi-environment management, authentication, cloud function deployment, and monitoring are addressed.
 
 ---
 
-## Estructura del Proyecto
+## Project Structure
 ```text
-├── cloud_function/ # Código fuente de la Cloud Function
-├── modules/ # Módulos reutilizables de Terraform
-├── terraform.tfstate.d/ # Estados de Terraform por workspace
-├── main.tf # Configuración principal de Terraform
-├── variables.tf # Definición de variables
-├── outputs.tf # Salidas de Terraform
-├── providers.tf # Configuración de proveedores
-├── locals.tf # Variables locales
-├── terraform.tfvars # Valores de variables
-└── README.md # Documentación del proyecto
+├── cloud_function/ # Cloud Function source code
+├── modules/ # Reusable Terraform modules
+├── terraform.tfstate.d/ # Terraform state per workspace
+├── main.tf # Main Terraform configuration
+├── variables.tf # Variable definitions
+├── outputs.tf # Terraform outputs
+├── providers.tf # Provider configuration
+├── locals.tf # Local variables
+├── terraform.tfvars # Variable values
+└── README.md # Project documentation
 `````
 
-## Despliegue
+## Deployment
 
-### Inicializar Terraform:
+### Initialize Terraform:
 terraform init
 
-### Crear y seleccionar workspaces
+### Create and select workspaces:
 terraform workspace new dev
 terraform workspace new rr
 terraform workspace select dev
 
-### Aplicar la configuración
+### Apply the configuration:
 terraform apply
 
-### Autenticación en GCP
-Para autenticarte con GCP y permitir que Terraform gestione los recursos:
+### GCP Authentication
+To authenticate with GCP and allow Terraform to manage resources:
 gcloud auth application-default login
 
 Este comando configura las credenciales de aplicación predeterminadas, necesarias para que Terraform interactúe con GCP.
 
-## Monitoreo y Logging
-Se ha incorporado monitoreo y logging utilizando GCP Cloud Monitoring y Logging para rastrear la salud y el rendimiento de la aplicación.
-Esto incluye la creación de dashboards personalizados y la integración con Cloud Functions.
+## Monitoring and Logging
+Monitoring and logging have been integrated using GCP Cloud Monitoring and Logging to track application health and performance.
+This includes creating custom dashboards and integrating with Cloud Functions.
 
-## Pruebas
+## Testing
+Retrieve the deployed function’s URL:
 gcloud functions describe hello-function --region=us-central1 --format='value(httpsTrigger.url)'
 
-Realizar una solicitud HTTP:
+Make an HTTP request:
 curl https://<URL_DE_LA_FUNCIÓN>
 
-## Notas
-Asegúrate de tener configurado el SDK de GCP y estar autenticado correctamente antes de ejecutar los comandos de Terraform.
+## Notes
+Make sure the GCP SDK is installed and you're properly authenticated before running Terraform commands.
 
-Los workspaces de Terraform permiten gestionar múltiples entornos (dev, rr, etc.) de forma aislada.
+Terraform workspaces allow isolated management of multiple environments (e.g., dev, rr).
 
-Si la función requiere permisos, asegúrate de asignar roles/cloudfunctions.invoker al principal adecuado.
+If the function requires permissions, be sure to assign the roles/cloudfunctions.invoker role to the appropriate principal.
