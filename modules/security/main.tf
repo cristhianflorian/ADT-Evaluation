@@ -1,12 +1,12 @@
 #Here I am creating for all user because I wanted to test cloud function allowing: Ingress > all just for testing.
 #The correct way is should be changing in member to:  member = "serviceAccount:${var.project_number}@appspot.gserviceaccount.com" (App Engine default service account or create a new one with less scope)
-resource "google_cloudfunctions_function_iam_member" "public_invoker" {
-  project        = var.project_id
-  region         = var.region
-  cloud_function = var.function_name
+resource "google_cloud_run_service_iam_member" "invoker" {
+  project = var.project_id
+  location = var.region
+  service = var.function_name
 
-  role   = "roles/cloudfunctions.invoker"
-  member = "allUsers"
+  role = "roles/run.invoker"
+  member = "allUsers" # para acceso público, o "user:correo@ejemplo.com" para acceso restringido
 }
 
 #Activanting observability. Is commented because in my projecto is already activated

@@ -19,24 +19,37 @@ Key aspects such as multi-environment management, authentication, cloud function
 └── README.md # Project documentation
 `````
 
+## Pre-requirements
+1.- Terraform should be installed in your local
+2.- Download the source using git clone
+3.- Go to locals.tf and update project_map with your projects. 
+
+Note:
+I'm using my company's GCP account to provision this challenge, so I'm unable to create new projects.
+If you're setting up a new project, consider provisioning the following Terraform resources:
+
+google_project
+google_billing_account_iam_member
+google_project_billing_info
+
+These resources are essential to properly create and link a new GCP project to a billing account.
+
+### GCP Authentication
+To authenticate with GCP and allow Terraform to manage resources:
+gcloud auth application-default login
+
 ## Deployment
 
 ### Initialize Terraform:
 terraform init
 
-### Create and select workspaces:
+### Create 3 workspaces and select dev workspace:
 terraform workspace new dev
 terraform workspace new rr
 terraform workspace select dev
 
 ### Apply the configuration:
 terraform apply
-
-### GCP Authentication
-To authenticate with GCP and allow Terraform to manage resources:
-gcloud auth application-default login
-
-Este comando configura las credenciales de aplicación predeterminadas, necesarias para que Terraform interactúe con GCP.
 
 ## Monitoring and Logging
 Monitoring and logging have been integrated using GCP Cloud Monitoring and Logging to track application health and performance.

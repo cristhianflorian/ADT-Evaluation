@@ -3,20 +3,27 @@ resource "google_storage_bucket" "bucket" {
   location = "US"
 }
 
-resource "google_cloudfunctions_function" "hello_function" {
-  name        = "hello-function"
-  runtime     = "python39"
-  entry_point = "hello_world"
-  source_archive_bucket = google_storage_bucket.bucket.name
-  source_archive_object = google_storage_bucket_object.archive.name
-  trigger_http = true
-  available_memory_mb = 128
-  https_trigger_security_level = "SECURE_ALWAYS"
-  ingress_settings = "ALLOW_INTERNAL_AND_GCLB"
-  project     = var.project_id
-  region      = var.region
-  environment_variables = {
-    LOG_LEVEL = "INFO"
+resource "google_cloudfunctions2_function" "hello_function" {
+  name     = "hello-function"
+  location = var.region
+  project  = var.project_id
+
+  build_config {
+    runtime     = "python39"
+    entry_point = "hello_world"
+    source {
+      storage_source {
+        bucket = google_storage_bucket.bucket.name
+        object = google_storage_bucket_object.archive.name
+      }
+    }
+  }
+
+  service_config {
+    available_memory = "256M"
+    timeout_seconds     = 60
+    ingress_settings = "ALLOW_INTERNAL_AND_GCLB"
+    max_instance_count = 3
   }
 }
 
