@@ -20,11 +20,11 @@ Key aspects such as multi-environment management, authentication, cloud function
 `````
 
 ## Pre-requirements
+```markdown
 1. Terraform should be installed in your local.
 2. Download the source using `git clone`.
 3. Go to `locals.tf` and update `project_map` with your projects.
 
-```markdown
 Note:
 I'm using my company's GCP account to provision this challenge, so I'm unable to create new projects.  
 If you're setting up a new project, consider provisioning the following Terraform resources:  
@@ -36,11 +36,13 @@ google_project_billing_info
 These resources are essential to properly create and link a new GCP project to a billing account.  
 `````
 ### GCP Authentication
+```markdown
 To authenticate with GCP and allow Terraform to manage resources:  
 gcloud auth application-default login
+`````
 
 ## Deployment
-
+```markdown
 ### Initialize Terraform:
 terraform init
 
@@ -51,17 +53,22 @@ terraform workspace select dev
 
 ### Apply the configuration:
 terraform apply
+`````
 
 ## Monitoring and Logging
+```markdown
 Monitoring and logging have been integrated using GCP Cloud Monitoring and Logging to track application health and performance.
 This includes creating custom dashboards and integrating with Cloud Functions.
+`````
 
 ## Testing
+```markdown
 Retrieve the deployed function’s URL:  
 gcloud functions describe hello-function --region=us-central1 --format='value(httpsTrigger.url)'
 
 Make an HTTP request:  
 curl https://<URL_DE_LA_FUNCIÓN>
+`````
 
 ## Notes
 Make sure the GCP SDK is installed and you're properly authenticated before running Terraform commands.  
