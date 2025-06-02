@@ -20,9 +20,9 @@ Key aspects such as multi-environment management, authentication, cloud function
 `````
 
 ## Pre-requirements
-1.- Terraform should be installed in your local
-2.- Download the source using git clone
-3.- Go to locals.tf and update project_map with your projects. 
+1. Terraform should be installed in your local.
+2. Download the source using `git clone`.
+3. Go to `locals.tf` and update `project_map` with your projects.
 
 Note:
 I'm using my company's GCP account to provision this challenge, so I'm unable to create new projects.
